@@ -24,8 +24,10 @@
 ## 🚀 Installation (Virtual Env)
 * Clone repository from gitlab or github
     ```
+    # GitLab
     git clone https://gitlab.com/adrien4g/docker-list.git
-    or
+    
+    # GitHub
     git clone https://github.com/adrien4g/docker-list.git
     ```
 
