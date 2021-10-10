@@ -1,5 +1,5 @@
-from utils import *
 import docker
+from .utils import *
 from configparser import ConfigParser
 
 class DockerList:
