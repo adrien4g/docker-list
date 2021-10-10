@@ -4,6 +4,13 @@ import sys
 from os import path
 from configparser import ConfigParser
 
+config = ConfigParser()
+config.read('app/config.ini')
+
+def verify_directorys():
+    if not path.exists(config['Default']['base_path']) or not path.exists(config['Default']['output_path']):
+        raise SystemExit('Please verify src/config.ini')
+
 def calculate_files_size(path):
     size = 0
     for path, _, files in os.walk(path):
@@ -15,17 +22,10 @@ def calculate_files_size(path):
     return "{:.2f}".format(size / (1024 ^2))
 
 def create_csv(container_data):
-    config = ConfigParser()
-    config.read('src/config.ini')
-    output_path = config['Default']['output_path']
-
-    if not path.exists(output_path):
-        raise SystemExit('\nOutput directory does not exist.')
-
     # Create header
     header = [i for i in container_data[0]]
 
-    with open(output_path + "/docker_list.csv", "w") as list_file:
+    with open(config['Default']['output_path'] + "/docker_list.csv", "w") as list_file:
         docker_file = csv.writer(list_file)
         docker_file.writerow(header)
         for container in container_data:

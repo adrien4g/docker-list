@@ -13,6 +13,7 @@ class DockerList:
         self.config.read('src/config.ini')
 
     def get_data(self):
+        verify_directorys()
         print('Getting list of containers...')
         container_list = self.dockerClient.containers.list()
         progress_counter = 1
